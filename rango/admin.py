@@ -5,8 +5,13 @@ class PageAdmin(admin.ModelAdmin):
     #Adds categories and urls to Pages admin page
     list_display = ('title', 'category', 'url')
 
-admin.site.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    # auto generate slugs on admin
+    prepopulated_fields = {'slug':('name',)}
+
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(Page, PageAdmin)
+
 
 
 
